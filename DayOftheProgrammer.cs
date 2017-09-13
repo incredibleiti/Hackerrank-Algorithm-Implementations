@@ -23,7 +23,8 @@ class Solution
             day -= daysInMonth;
             month++;
         }
-        return (day+"."+ month+"."+ year);        
+       DateTime dt = new DateTime(year, month, day,0,0,0);
+        return (String.Format("{0:dd.MM.yyyy}", dt));      
     }
 
     static int computeDaysInMonth(int year, int month)
