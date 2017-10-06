@@ -1,0 +1,13 @@
+
+// Adding the optimization logic for the contest here, rest of the probem solution (working) can be found on the hackkerank.
+The contest was to optimized the run time of the problem.
+
+if(ar[i]>maxi) 
+{ 
+  maxi = ar[i]; 
+  cnt =1;
+} 
+else if(ar[i] == maxi) 
+{ 
+  cnt +=1;
+}
