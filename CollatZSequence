@@ -1,0 +1,91 @@
+using System;
+using System.Numerics;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+class Solution
+{
+    static void Main(String[] args)
+    {
+        string[] array = Console.ReadLine().Split(' ');
+        int T = Convert.ToInt32(array[0]);
+        int A = Convert.ToInt32(array[1]);
+        int B = Convert.ToInt32(array[2]);
+
+        int result = collatzSequenceSum(T, A, B);
+        Console.WriteLine(result);
+        Console.ReadKey();
+    }
+
+    static int collatzSequenceLen_(int n)
+    {
+        if (n == 0)
+        {
+            return 0;
+        }
+        if (n == 1)
+        {
+            return 1;
+        }
+        if (n % 2 == 0)
+        {
+            return 1 + collatzSequenceLen(n / 2);
+        }
+        return 1 + collatzSequenceLen(3 * n + 1);
+    }
+
+    static int collatzSequenceLen(int n)
+    {
+        int cnt = 1;
+        while (n != 1)
+        {
+            if (n % 2 == 0)
+            {
+                n /= 2;
+            }
+            else
+            {
+                n = (3 * n) + 1;
+            }
+
+            cnt += 1;
+        }
+        return cnt;
+    }
+
+    static int collatzSequenceSum(int T, int A, int B)
+    {
+        int n = 0;
+        int result = 0;
+        Dictionary<int, int> seq = new Dictionary<int, int>(); 
+
+        while (T>0)
+        {
+            n = (A * n + B) % 5003;
+            int best_len = 0;
+            int best_num = 0;
+            for (int k = 1; k <= n; ++k)
+            {
+                int cur_len = 0;
+                if (!seq.ContainsKey(k))
+                {
+                   cur_len = collatzSequenceLen(k);
+                    seq.Add(k,cur_len);
+                }
+                else
+                {
+                    cur_len = seq[k];
+                }
+                
+                if (cur_len >= best_len)
+                {
+                    best_len = cur_len;
+                    best_num = k;
+                }
+            }
+            result += best_num;
+            T--;
+        }
+        return result;
+    }
+}
