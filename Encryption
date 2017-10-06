@@ -1,0 +1,33 @@
+using System;
+using System.Numerics;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+
+class Solution
+{
+    static void Main(String[] args)
+    {
+        string s = Console.ReadLine();
+        Char[] ar = s.ToArray();
+        int l = ar.Length;
+        //int lower = Convert.ToInt32(Math.Floor(Math.Sqrt(l)));
+        int upper = Convert.ToInt32(Math.Ceiling(Math.Sqrt(l)));
+        
+        StringBuilder st = new StringBuilder();
+        for (int j = 0; j < upper; j++)
+        {
+            int i = j;
+            while (i < l)
+            {
+                st.Append(ar[i]);
+                i = i + upper;
+            }
+            st.Append(" ");
+        }
+        Console.WriteLine(st);
+        Console.ReadKey();
+        
+    }
+}
