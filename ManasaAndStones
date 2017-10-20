@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+class Solution
+{
+    static void Main(String[] args)
+    {
+        int cases = Convert.ToInt32(Console.ReadLine());
+        for (int i = 0; i < cases; i++)
+        {
+            int stones = Convert.ToInt32(Console.ReadLine()) - 1;
+            int one = Convert.ToInt32(Console.ReadLine());
+            int two = Convert.ToInt32(Console.ReadLine());
+
+            int a = Math.Min(one, two);
+            int b = Math.Max(one, two);
+
+            var first = a * stones;
+            var last = b * stones;
+            var difference = b - a;
+            if (a == b)
+            {
+                Console.WriteLine(first);
+            }
+            else
+            {
+                var final = new StringBuilder();
+                while (first <= last)
+                {
+                    final.Append(first.ToString() + " ");
+                    first += difference;
+                }
+                Console.WriteLine(final);
+            }
+        }
+    }
+}
