@@ -1,0 +1,46 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+class Solution {
+    static void Main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution */
+        int n1 = Convert.ToInt32(Console.ReadLine());
+        int n2 = Convert.ToInt32(Console.ReadLine());
+
+        string result = String.Empty; 
+
+        for (long i = n1; i <= n2; i++)
+        {
+           long sqr = i * i;
+
+           String sqrt_ = (sqr.ToString());
+
+            if (sqrt_.Length % 2 != 0) // means string is odd
+            {
+                sqrt_ = "0" + sqrt_;
+
+                while (sqrt_.Length % 2 != 0)
+                {
+                    sqrt_ = "0" + sqrt_;
+                }
+            }
+                long num1 = Convert.ToInt32(sqrt_.Substring(0, sqrt_.Length / 2));
+                long num2 = Convert.ToInt32(sqrt_.Substring(sqrt_.Length / 2));
+
+                if (num1 + num2 == i)
+                {
+                    result += i + " ";
+                }
+            
+        }
+        
+        if(result!=string.Empty)
+        {
+            Console.WriteLine(result);
+        }
+        else
+        {
+            Console.WriteLine("INVALID RANGE");
+        }
+    }
+}
