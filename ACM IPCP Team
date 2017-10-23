@@ -1,0 +1,49 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+class Solution
+{
+    static void Main(String[] args)
+    {
+        string[] tokens_n = Console.ReadLine().Split(' ');
+        int n = Convert.ToInt32(tokens_n[0]);
+        int m = Convert.ToInt32(tokens_n[1]);
+        string[] topic = new string[n];
+        for (int topic_i = 0; topic_i < n; topic_i++)
+        {
+            topic[topic_i] = Console.ReadLine();
+        }      
+       
+        int max = 0;
+        List<int> matched = new List<int>();
+        for (int i = 0; i < n; i++)
+        {
+            int[] arr = Array.ConvertAll(topic[i].ToArray(), c => (int)Char.GetNumericValue(c));
+            for (int j = i + 1; j < n; j++)
+            {
+                int[] arr2 = Array.ConvertAll(topic[j].ToArray(), c => (int)Char.GetNumericValue(c));
+                int match = 0;                
+                for (int k = 0; k < arr.Length; k++)
+                {
+                    if((arr[k] | arr2[k]) == 1)                   
+                    {
+                        match++;            
+                    }
+                }
+                if(match > max)
+                {
+                    max = match;                    
+                }
+                matched.Add(match);
+            }           
+        }
+        int max_ = matched.Max();
+        int cnt = matched.Where(x => x.Equals(max)).Count();
+
+        Console.WriteLine(max);
+        Console.WriteLine(cnt);
+        Console.ReadKey();
+    }
+}
