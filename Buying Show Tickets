@@ -1,0 +1,52 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+class Solution
+{
+static void Main(String[] args)
+    {
+        string fileName = System.Environment.GetEnvironmentVariable("OUTPUT_PATH");
+
+
+        long res;
+        int tickets_size = 0;
+        tickets_size = Convert.ToInt32(Console.ReadLine());
+        int[] tickets = new int[tickets_size];
+        int tickets_item;
+        for (int tickets_i = 0; tickets_i < tickets_size; tickets_i++)
+        {
+            tickets_item = Convert.ToInt32(Console.ReadLine());
+            tickets[tickets_i] = tickets_item;
+        }
+
+        int p;
+        p = Convert.ToInt32(Console.ReadLine());
+
+        res = waitingTime(tickets, p);
+
+    }
+    
+        static long waitingTime(int[] tickets, int p)
+    {
+        long count = 0;
+        while (tickets[p] != 0)
+        {
+            for (int i = 0; i < tickets.Length; i++)
+            {
+                if (tickets[i] > 0)
+                {
+                    tickets[i] -= 1;
+                    count++;
+                    if (tickets[p] == 0)
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+
+        return count;
+    }
+    }
