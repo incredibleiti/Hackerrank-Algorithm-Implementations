@@ -1,0 +1,55 @@
+    static void Main(String[] args)
+    {
+        long[] res;
+        int operations_size = 0;
+        operations_size = Convert.ToInt32(Console.ReadLine());
+        string[] operations = new string[operations_size];
+        string operations_item;
+        for (int operations_i = 0; operations_i < operations_size; operations_i++)
+        {
+            operations_item = Console.ReadLine();
+            operations[operations_i] = operations_item;
+        }
+
+        int x_size = 0;
+        x_size = Convert.ToInt32(Console.ReadLine());
+        int[] x = new int[x_size];
+        int x_item;
+        for (int x_i = 0; x_i < x_size; x_i++)
+        {
+            x_item = Convert.ToInt32(Console.ReadLine());
+            x[x_i] = x_item;
+        }
+
+        res = maxMin(operations, x);
+        for (int res_i = 0; res_i < res.Length; res_i++)
+        {
+            Console.WriteLine(res[res_i]);
+        }
+    }
+
+    static long[] maxMin(string[] operations, int[] x)
+    {
+        long[] arr = new long[x.Length];
+        List<int> lst = new List<int>();
+        for (int i = 0; i < operations.Length; i++)
+        {
+            if (operations[i] == "push")
+            {
+                lst.Add(x[i]);
+            }
+            else
+            {
+                if (lst.Count != 0)
+                {
+                    lst.Remove(x[i]);
+                }
+            }
+
+            int max = lst.Max();
+            int min = lst.Min();
+
+            arr[i] = max * min;
+        }
+        return arr;
+    }
