@@ -44,7 +44,7 @@ class Program {
 					Console.WriteLine("NO");
 					
 				}
-				if(noOfStuds<k)
+				if(noOfStuds  <k) // check if less than
 				{
 					Console.WriteLine("YES");
 				}
