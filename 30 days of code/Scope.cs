@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-class Solution
+public class Solution
 {
     static void Main(String[] args)
     {
