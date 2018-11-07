@@ -8,6 +8,28 @@ class Solution
     {
         int cnt = (m + s - 1 - 1) % n + 1;
         return cnt;
+        
+        
+        // there can be a different equation based on the solution explaination I added below..:)
+        //try to make another equation using that description...as well...
+        
+       int result_before_check = 0;
+            //n = prisoner
+            //m = sweets count
+            //s = start index
+            result_before_check = m + s - 1;
+            //now check if intermediate result index is within prisoner range
+            //if not then substract and get last prisoner...else return intermediate result as that is the final result as well
+
+            if(result_before_check>n)
+            {
+                return result_before_check % n !=0 ? result_before_check % n : (result_before_check % n) + n; 
+            }
+            else
+            {
+                return result_before_check;
+            }
+        
     }
 
     static void Main(String[] args)
