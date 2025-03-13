@@ -1,5 +1,21 @@
 Given a string find the index of a character which can be removed to make the string palindrome.
 
+    
+Test cases:
+STDIN   Function
+-----   --------
+3       q = 3
+aaab    s = 'aaab' (first query)
+baa     s = 'baa'  (second query)
+aaa     s = 'aaa'  (third query)
+
+3
+0
+-1
+
+
+    
+
 int palindromeIndex(string s) {
     int left = 0, right = s.length() - 1;
 
