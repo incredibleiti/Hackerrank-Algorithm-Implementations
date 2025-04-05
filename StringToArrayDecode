@@ -1,0 +1,42 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <iostream>
+#include <algorithm>
+#include <vector>
+
+using namespace std;
+
+vector<int> decodedArray(const string &value) { ///1223#26# --> A:1 B:1 ...w:1 z:1
+    vector<int> result(26,0); //all values are zeros
+    
+    for(int i = value.size() - 1; i>=0; --i) {
+        char ch = value[i];
+        if(ch == '#') { //indicate taht its double
+            int num = (value[i-1] - '0') + (value[i-2] - '0') * 10; //ascii value of a 97 and 123 ..(later)
+            result[num-1]++;
+            i-=2;
+        } else if (ch>='1' && ch <='9') {
+            int num = ch - '0';
+            result[num - 1]++;
+        }
+    }
+    return result;
+}
+
+int main()
+{
+    string input = "1223#26#";
+    vector<int> result = decodedArray(input);
+    for(auto val: result) {
+        cout << val << endl;
+    }
+    std::cout<<"Hello World";
+
+    return 0;
+}
